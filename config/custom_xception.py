@@ -6,7 +6,7 @@ from glob import glob
 
 import tensorflow as tf
 
-IMG_SIZE = 512
+IMG_SIZE = 576
 BATCH_SIZE = 4
 NUM_CLASSES = 4
 LR = 0.0001

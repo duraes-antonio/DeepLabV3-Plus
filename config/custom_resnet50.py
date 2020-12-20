@@ -6,7 +6,7 @@ from glob import glob
 
 import tensorflow as tf
 
-IMG_SIZE = 512
+IMG_SIZE = 576
 BATCH_SIZE = 4
 NUM_CLASSES = 4
 LR = 0.0001
@@ -26,7 +26,7 @@ CONFIG = {
     # We mandate specifying project_name and experiment_name in every config
     # file. They are used for wandb runs if wandb api key is specified.
     'project_name': 'deeplabv3-plus',
-    'experiment_name': 'custom-xception',
+    'experiment_name': 'custom-resnet',
 
     'train_dataset_config': {
         'images': sorted(glob(f'{DATASET_CUSTOM_DIR}/train/*')),
