@@ -53,3 +53,5 @@ CONFIG = {
 
     'epochs': EPOCHS
 }
+
+print(CONFIG)
