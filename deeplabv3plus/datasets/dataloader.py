@@ -4,6 +4,7 @@ import tensorflow as tf
 class GenericDataLoader:
 
     def __init__(self, configs):
+        print('CONFIG', configs)
         self.configs = configs
         self.assert_dataset()
 
