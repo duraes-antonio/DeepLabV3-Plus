@@ -6,10 +6,12 @@ entry in the CONFIG_MAP as shown.
 """
 
 import config.camvid_resnet50
+import config.custom_xception
 import config.human_parsing_resnet50
 
 
 CONFIG_MAP = {
+    'custom-xception': config.custom_xception.CONFIG,
     'camvid_resnet50': config.camvid_resnet50.CONFIG,
     'human_parsing_resnet50': config.human_parsing_resnet50.CONFIG
 }

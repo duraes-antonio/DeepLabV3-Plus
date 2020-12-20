@@ -1,15 +1,24 @@
 """Module providing Trainer class for deeplabv3plus"""
 
 import os
-
 import tensorflow as tf
-
+import keras.backend as K
+import numpy as np
 import wandb
 from wandb.keras import WandbCallback
 
 from deeplabv3plus.datasets import GenericDataLoader
 from deeplabv3plus.model import DeeplabV3Plus
 
+
+def f1_score(y_true, y_pred):  # taken from old keras source code
+	true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+	possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+	predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+	precision = true_positives / (predicted_positives + K.epsilon())
+	recall = true_positives / (possible_positives + K.epsilon())
+	f1_val = 2 * (precision * recall) / (precision + recall + K.epsilon())
+	return f1_val
 
 class Trainer:
     """Class for managing DeeplabV3+ model training.
@@ -62,7 +71,13 @@ class Trainer:
                     learning_rate=self.config['learning_rate']
                 ),
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(),
-                metrics=['accuracy']
+                metrics=[
+                    'accuracy',
+                    tf.keras.metrics.Recall(name='recall'),
+                    tf.keras.metrics.Precision(name='precision'),
+                    tf.keras.metrics.MeanIoU(num_classes=self.config['num_classes'], name='miou'),
+                    f1_score
+                ]
             )
 
             return self._model
