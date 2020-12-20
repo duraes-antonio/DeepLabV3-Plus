@@ -12,13 +12,18 @@ NUM_CLASSES = 4
 LR = 0.0001
 EPOCHS = 20
 BACKBONE = 'resnet50'
+CAUSA_POSFIX = True
 
 DATASET_RESOLUCAO = f'{IMG_SIZE}x{IMG_SIZE}'
 DATASET_PARTITION = '75_15_10'
 PREPROC_EQ_HIST = 'hist-equal'
 PREPROC_TRANSF_MORF = 'transf-morf'
-PREPROC = PREPROC_EQ_HIST
-DATASET_CONFIG = '_'.join([config for config in [DATASET_RESOLUCAO, DATASET_PARTITION, PREPROC] if config])
+PREPROC = PREPROC_TRANSF_MORF
+CAUSA = '' if CAUSA_POSFIX else 'sem-causa'
+DATASET_CONFIG = '_'.join([
+    config for config in [DATASET_RESOLUCAO, DATASET_PARTITION, PREPROC, CAUSA]
+    if config
+])
 DATASET_CUSTOM_DIR = f'/content/drive/MyDrive/dataset/{DATASET_RESOLUCAO}/custom_{DATASET_CONFIG}'
 
 # Sample Configuration
