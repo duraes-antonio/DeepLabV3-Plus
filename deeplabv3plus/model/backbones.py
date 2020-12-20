@@ -9,8 +9,8 @@ BACKBONES = {
     },
     'xception': {
         'model': tf.keras.applications.Xception,
-        'feature_1': 'conv4_block6_2_relu',
-        'feature_2': 'conv2_block3_2_relu'
+        'feature_1': 'block14_sepconv2_act',
+        'feature_2': 'block_3_depthwise_relu'
     },
     'mobilenetv2': {
         'model': tf.keras.applications.MobileNetV2,
