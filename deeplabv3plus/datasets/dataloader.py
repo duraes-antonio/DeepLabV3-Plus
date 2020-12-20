@@ -17,6 +17,7 @@ class GenericDataLoader:
 
     def read_img(self, image_path, mask=False):
         image = tf.io.read_file(image_path)
+        print(image_path)
         if mask:
             image = tf.image.decode_png(image, channels=1)
             image.set_shape([None, None, 1])
