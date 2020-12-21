@@ -33,9 +33,7 @@ class Trainer:
         self._assert_config()
 
         # Train Dataset
-        print('TRAIN CONFIG', self.config)
         train_dataloader = GenericDataLoader(self.config['train_dataset_config'])
-        print('DATALOADER', self.config['train_dataset_config'])
         self.train_data_length = len(train_dataloader)
         print('[+] Data points in train dataset: {}'.format(
             self.train_data_length))

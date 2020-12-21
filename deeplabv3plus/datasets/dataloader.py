@@ -4,7 +4,6 @@ import tensorflow as tf
 class GenericDataLoader:
 
     def __init__(self, configs):
-        print('CONFIG', configs)
         self.configs = configs
         self.assert_dataset()
 
@@ -17,7 +16,6 @@ class GenericDataLoader:
         return len(self.configs['images'])
 
     def read_img(self, image_path, mask=False):
-        print(image_path)
         image = tf.io.read_file(image_path)
         if mask:
             image = tf.image.decode_png(image, channels=1)
